@@ -11,15 +11,15 @@ const startMainTabs = () => {
     Navigation.startTabBasedApp({
       tabs: [
         {
-          screen: 'tbd.ChoiceInputScreen',
-          label: 'Provide Choice',
-          title: 'Provide Choice',
-          icon: sources[0]
-        },
-        {
           screen: 'tbd.ChoiceListScreen',
           label: 'Choice List',
           title: 'Choice List',
+          icon: sources[0]
+        },
+        {
+          screen: 'tbd.ChoiceInputScreen',
+          label: 'Provide Choice',
+          title: 'Provide Choice',
           icon: sources[1]
         }
       ],
