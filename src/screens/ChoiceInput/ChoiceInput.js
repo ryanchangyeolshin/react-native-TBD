@@ -39,12 +39,6 @@ class ChoiceInputScreen extends Component {
     disabled: true
   }
 
-  componentDidMount() {
-    if (!this.state.controls.choice.valid && !this.state.controls.author.valid) {
-      this.setState({ disabled: false })
-    }
-  }
-
   updateInputState = (type, value) => {
     this.setState(prevState => {
       return {
@@ -67,6 +61,22 @@ class ChoiceInputScreen extends Component {
       author: author
     }
     this.props.addChoiceToList(choiceData)
+    this.setState(prevState => {
+      return {
+        controls: {
+          choice: {
+            ...prevState.controls.choice,
+            value: null,
+            valid: false
+          },
+          author: {
+            ...prevState.controls.author,
+            value: null,
+            valid: false
+          }
+        }
+      }
+    })
   }
 
   render() {
@@ -100,10 +110,13 @@ class ChoiceInputScreen extends Component {
               this.state.controls.author.value
             )
           }}
+          disabled={
+            !this.state.controls.choice.valid ||
+            !this.state.controls.author.valid
+          }
         >
           Submit
         </ButtonWithBackground>
-        <Text>Choice: {this.props.choices}</Text>
       </ImageBackground>
     )
   }

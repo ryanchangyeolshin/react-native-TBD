@@ -9,7 +9,9 @@ const store = configureStore()
 
 Navigation.registerComponent(
   'tbd.ChoiceListScreen',
-  () => ChoiceListScreen
+  () => ChoiceListScreen,
+  store,
+  Provider
 )
 
 Navigation.registerComponent(
