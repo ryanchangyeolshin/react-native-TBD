@@ -67,6 +67,20 @@ class ChoiceInputScreen extends Component {
       author: author
     }
     this.props.addChoiceToList(choiceData)
+    this.setState(prevState => {
+      return {
+        controls: {
+          choice: {
+            ...prevState.controls.choice,
+            value: null
+          },
+          author: {
+            ...prevState.controls.author,
+            value: null
+          }
+        }
+      }
+    })
   }
 
   render() {
@@ -103,7 +117,6 @@ class ChoiceInputScreen extends Component {
         >
           Submit
         </ButtonWithBackground>
-        <Text>Choice: {this.props.choices}</Text>
       </ImageBackground>
     )
   }
