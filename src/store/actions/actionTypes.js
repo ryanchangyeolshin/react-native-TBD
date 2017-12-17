@@ -1,0 +1,2 @@
+export const ADD_CHOICE = 'ADD_CHOICE'
+export const DELETE_ALL_CHOICES = 'DELETE_ALL_CHOICES'
