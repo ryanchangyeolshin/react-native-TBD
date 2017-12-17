@@ -12,7 +12,7 @@ import DefaultInput from '../../components/UI/DefaultInput/DefaultInput'
 import ButtonWithBackground from '../../components/UI/ButtonWithBackground/ButtonWithBackground'
 import validate from '../../utility/validate'
 import { addChoice } from '../../store/actions/index'
-import backgroundImage from '../../assets/background.jpg'
+import backgroundImage from '../../assets/background.png'
 
 class ChoiceInputScreen extends Component {
   state = {
