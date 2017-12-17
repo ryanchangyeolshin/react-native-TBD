@@ -13,14 +13,15 @@ const ButtonWithBackground = props => {
     <View
       style={[
         styles.button,
-        { backgroundColor: props.color },
+        { borderColor: props.color },
         props.disabled ? styles.disabled : null
       ]}
     >
       <Text
-        style={
+        style={[
+          { color: props.color },
           props.disabled ? styles.disabledText : styles.buttonText
-        }
+        ]}
       >
         {props.children}
       </Text>
@@ -48,18 +49,17 @@ const ButtonWithBackground = props => {
 
 const styles = StyleSheet.create({
   button: {
+    backgroundColor: 'transparent',
     padding: 10,
     margin: 5,
     borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'white'
+    borderWidth: 2
   },
   disabled: {
     backgroundColor: '#eee',
     borderColor: '#aaa'
   },
   buttonText: {
-    color: '#fff',
     fontWeight: 'bold'
   },
   disabledText: {
