@@ -103,7 +103,7 @@ class ChoiceInputScreen extends Component {
         >
           Submit
         </ButtonWithBackground>
-        <Text>{JSON.stringify(this.props.choices)}</Text>
+        <Text>Choice: {this.props.choices}</Text>
       </ImageBackground>
     )
   }
