@@ -35,8 +35,7 @@ class ChoiceInputScreen extends Component {
         },
         touched: false
       }
-    },
-    disabled: true
+    }
   }
 
   updateInputState = (type, value) => {
@@ -102,7 +101,6 @@ class ChoiceInputScreen extends Component {
           autoCorrect={false}
         />
         <ButtonWithBackground
-          disabled={this.state.disabled}
           color="#5f9f89"
           onPress={() => {
             this.addChoiceHandler(
