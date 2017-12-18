@@ -5,7 +5,7 @@ import {
   Text,
   TouchableNativeFeedback,
   TouchableOpacity,
-  Platform,
+  Platform
 } from 'react-native'
 
 const ButtonWithBackground = props => {
@@ -60,11 +60,13 @@ const styles = StyleSheet.create({
     borderColor: '#aaa'
   },
   buttonText: {
+    textAlign: 'center',
     fontWeight: 'bold'
   },
   disabledText: {
     color: '#aaa',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textAlign: 'center'
   }
 })
 
