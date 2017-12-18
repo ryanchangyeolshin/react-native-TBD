@@ -11,22 +11,26 @@ import {
 import uuid from 'uuid-v4'
 import ChoiceItem from '../../components/ChoiceItem/ChoiceItem'
 import ButtonWithBackground from '../../components/UI/ButtonWithBackground/ButtonWithBackground'
-import { deleteAllChoices } from '../../store/actions/index'
+import { deleteAllChoices, showListAnimation } from '../../store/actions/index'
 import backgroundImage from '../../assets/background.png'
 
 class ChoiceListScreen extends Component {
   state = {
-    clearChoicesAnimation: new Animated.Value(1)
+    choiceListAnimation: new Animated.Value(1)
   }
 
   clearAllChoicesHandler = () => {
-    Animated.timing(this.state.clearChoicesAnimation, {
+    Animated.timing(this.state.choiceListAnimation, {
       toValue: 0,
       duration: 500,
       useNativeDriver: true
     }).start(() => {
       this.props.clearAllChoices()
     })
+  }
+
+  randomizeChoiceHandler = () => {
+    alert('HELLO')
   }
 
   render() {
@@ -38,29 +42,38 @@ class ChoiceListScreen extends Component {
         <View style={styles.buttonContainer}>
           <ButtonWithBackground
             color='red'
+            style={{ flex: 1 }}
             onPress={this.clearAllChoicesHandler}
             disabled={this.props.choices.length === 0}
           >
             Clear
           </ButtonWithBackground>
+          <ButtonWithBackground
+            color='yellow'
+            style={{ flex: 1 }}
+            onPress={this.randomizeChoiceHandler}
+            disabled={this.props.choices.length === 0}
+          >
+            Randomize
+          </ButtonWithBackground>
         </View>
-        <Animated.View
-          style={{
-            opacity: this.state.clearChoicesAnimation
-          }}
-        >
           <FlatList
             data={this.props.choices}
             keyExtractor={() => uuid()}
             renderItem={info => (
-              <ChoiceItem
-                key={uuid()}
-                choice={info.item.choice}
-                author={info.item.author}
-              />
+              <Animated.View
+                style={{
+                  opacity: this.state.choiceListAnimation
+                }}
+              >
+                <ChoiceItem
+                  key={uuid()}
+                  choice={info.item.choice}
+                  author={info.item.author}
+                />
+              </Animated.View>
           )}
           />
-        </Animated.View>
     </ImageBackground>
     )
   }
@@ -84,7 +97,8 @@ const styles = StyleSheet.create({
     marginTop: 5
   },
   buttonContainer: {
-    alignItems: 'center'
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 })
 
