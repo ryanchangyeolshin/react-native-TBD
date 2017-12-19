@@ -101,8 +101,6 @@ class ChoiceInputScreen extends Component {
             autoCapitalize="none"
             autoCorrect={false}
           />
-        </View>
-        <View style={styles.buttonContainer}>
           <ButtonWithBackground
             color="green"
             onPress={() => {
@@ -131,9 +129,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   inputContainer: {
-    alignItems: 'center'
-  },
-  buttonContainer: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center'
   }
 })
