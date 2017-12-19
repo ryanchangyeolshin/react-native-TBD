@@ -9,14 +9,59 @@ import {
 } from 'react-native'
 
 const ButtonWithBackground = props => {
-  const content = (
-    <View
+  if (props.disabled) {
+    return (
+      <View
+        style={[
+          props.style,
+          styles.button,
+          { borderColor: props.color },
+          props.disabled ? styles.disabled : null
+        ]}
+      >
+        <Text
+          style={[
+            { color: props.color },
+            props.disabled ? styles.disabledText : styles.buttonText
+          ]}
+        >
+          {props.children}
+        </Text>
+      </View>
+    )
+  }
+
+  if (Platform.OS === 'android') {
+    return (
+      <TouchableNativeFeedback
+        style={[
+          props.style,
+          styles.button,
+          { borderColor: props.color },
+          props.disabled ? styles.disabled : null
+        ]}
+        onPress={props.onPress}>
+        <Text
+          style={[
+            { color: props.color },
+            props.disabled ? styles.disabledText : styles.buttonText
+          ]}
+        >
+          {props.children}
+        </Text>
+      </TouchableNativeFeedback>
+    )
+  }
+
+  return (
+    <TouchableOpacity
       style={[
+        props.style,
         styles.button,
         { borderColor: props.color },
         props.disabled ? styles.disabled : null
       ]}
-    >
+      onPress={props.onPress}>
       <Text
         style={[
           { color: props.color },
@@ -25,30 +70,13 @@ const ButtonWithBackground = props => {
       >
         {props.children}
       </Text>
-    </View>
-  )
-
-  if (props.disabled) {
-    return content
-  }
-
-  if (Platform.OS === 'android') {
-    return (
-      <TouchableNativeFeedback onPress={props.onPress}>
-        {content}
-      </TouchableNativeFeedback>
-    )
-  }
-
-  return (
-    <TouchableOpacity onPress={props.onPress}>
-      {content}
     </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
   button: {
+    width: '90%',
     backgroundColor: 'transparent',
     padding: 10,
     margin: 5,

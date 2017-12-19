@@ -11,21 +11,40 @@ import {
 import uuid from 'uuid-v4'
 import ChoiceItem from '../../components/ChoiceItem/ChoiceItem'
 import ButtonWithBackground from '../../components/UI/ButtonWithBackground/ButtonWithBackground'
-import { deleteAllChoices } from '../../store/actions/index'
+import { deleteAllChoices, getWinningChoice } from '../../store/actions/index'
 import backgroundImage from '../../assets/background.png'
 
 class ChoiceListScreen extends Component {
   state = {
-    clearChoicesAnimation: new Animated.Value(1)
+    choiceListAnimation: new Animated.Value(1),
+    randomized: false
   }
 
   clearAllChoicesHandler = () => {
-    Animated.timing(this.state.clearChoicesAnimation, {
+    Animated.timing(this.state.choiceListAnimation, {
       toValue: 0,
       duration: 500,
       useNativeDriver: true
     }).start(() => {
       this.props.clearAllChoices()
+      this.setState({ randomized: false })
+    })
+  }
+
+  randomizeChoiceHandler = () => {
+    this.setState({ randomized: true })
+    const winningIndex = Math.floor(Math.random() * this.props.choices.length)
+    Animated.timing(this.state.choiceListAnimation, {
+      toValue: 0,
+      duration: 500,
+      useNativeDriver: true
+    }).start(() => {
+      this.props.getWinningRandomChoice(winningIndex)
+      Animated.timing(this.state.choiceListAnimation, {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: true
+      }).start()
     })
   }
 
@@ -38,29 +57,41 @@ class ChoiceListScreen extends Component {
         <View style={styles.buttonContainer}>
           <ButtonWithBackground
             color='red'
+            style={{ flex: 0.5 }}
             onPress={this.clearAllChoicesHandler}
-            disabled={this.props.choices.length === 0}
+            disabled={this.props.choices.length < 1}
           >
             Clear
           </ButtonWithBackground>
+          <ButtonWithBackground
+            color='yellow'
+            style={{ flex: 0.5 }}
+            onPress={this.randomizeChoiceHandler}
+            disabled={this.props.choices.length < 2}
+          >
+            Randomize
+          </ButtonWithBackground>
         </View>
-        <Animated.View
-          style={{
-            opacity: this.state.clearChoicesAnimation
-          }}
-        >
+        <View style={styles.choicesContainer}>
           <FlatList
             data={this.props.choices}
             keyExtractor={() => uuid()}
             renderItem={info => (
-              <ChoiceItem
-                key={uuid()}
-                choice={info.item.choice}
-                author={info.item.author}
-              />
+              <Animated.View
+                style={{
+                  opacity: this.state.choiceListAnimation
+                }}
+              >
+                <ChoiceItem
+                  key={uuid()}
+                  choice={info.item.choice}
+                  author={info.item.author}
+                  randomized={this.state.randomized}
+                />
+              </Animated.View>
           )}
           />
-        </Animated.View>
+        </View>
     </ImageBackground>
     )
   }
@@ -74,7 +105,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    clearAllChoices: () => dispatch(deleteAllChoices())
+    clearAllChoices: () => dispatch(deleteAllChoices()),
+    getWinningRandomChoice: winningIndex => dispatch(getWinningChoice(winningIndex))
   }
 }
 
@@ -84,7 +116,12 @@ const styles = StyleSheet.create({
     marginTop: 5
   },
   buttonContainer: {
-    alignItems: 'center'
+    flexDirection: 'row'
+  },
+  choicesContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start'
   }
 })
 

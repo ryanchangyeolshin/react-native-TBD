@@ -1,1 +1,1 @@
-export { addChoice, deleteAllChoices } from './choices.js'
+export { addChoice, deleteAllChoices, getWinningChoice } from './choices'

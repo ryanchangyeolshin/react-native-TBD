@@ -4,7 +4,13 @@ import { StyleSheet, View, Text } from 'react-native'
 const ChoiceItem = props => {
   return (
     <View style={styles.listItem}>
-      <View style={styles.listTextContainer}>
+      <View
+        style={
+          props.randomized
+            ? styles.winningTextContainer
+            : styles.listTextContainer
+        }
+      >
         <Text style={styles.listText}>{props.choice}</Text>
       </View>
     </View>
@@ -19,6 +25,13 @@ const styles = StyleSheet.create({
   },
   listTextContainer: {
     backgroundColor: '#eee',
+    borderColor: '#fff',
+    borderWidth: 2,
+    borderRadius: 10,
+    opacity: 0.8
+  },
+  winningTextContainer: {
+    backgroundColor: '#f5bf6f',
     borderColor: '#fff',
     borderWidth: 2,
     borderRadius: 10,
