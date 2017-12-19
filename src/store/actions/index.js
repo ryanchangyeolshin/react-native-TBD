@@ -1,1 +1,1 @@
-export { addChoice, deleteAllChoices } from './choices'
+export { addChoice, deleteAllChoices, getWinningChoice } from './choices'

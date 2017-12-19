@@ -1,4 +1,4 @@
-import { ADD_CHOICE, DELETE_ALL_CHOICES } from './actionTypes'
+import { ADD_CHOICE, DELETE_ALL_CHOICES, GET_WINNING_CHOICE } from './actionTypes'
 
 export const addChoice = choice => {
   return {
@@ -10,5 +10,12 @@ export const addChoice = choice => {
 export const deleteAllChoices = () => {
   return {
     type: DELETE_ALL_CHOICES
+  }
+}
+
+export const getWinningChoice = winningIndex => {
+  return {
+    type: GET_WINNING_CHOICE,
+    winningIndex: winningIndex
   }
 }
