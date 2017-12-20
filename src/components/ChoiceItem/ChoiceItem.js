@@ -1,18 +1,26 @@
 import React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 
 const ChoiceItem = props => {
+  let content = (
+    <View style={styles.listTextContainer}>
+      <Text style={styles.listText}>{props.choice}</Text>
+    </View>
+  )
+
+  if (props.randomized) {
+    content = (
+      <TouchableOpacity
+        onPress={props.onPress}
+        style={styles.winningTextContainer}>
+        <Text style={styles.listText}>{props.choice}</Text>
+      </TouchableOpacity>
+    )
+  }
+
   return (
     <View style={styles.listItem}>
-      <View
-        style={
-          props.randomized
-            ? styles.winningTextContainer
-            : styles.listTextContainer
-        }
-      >
-        <Text style={styles.listText}>{props.choice}</Text>
-      </View>
+      {content}
     </View>
   )
 }
@@ -24,7 +32,7 @@ const styles = StyleSheet.create({
     padding: 10
   },
   listTextContainer: {
-    backgroundColor: '#eee',
+    backgroundColor: 'transparent',
     borderColor: '#fff',
     borderWidth: 2,
     borderRadius: 10,
