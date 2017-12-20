@@ -7,31 +7,35 @@ const ChoiceDetailScreen = props => {
     <ImageBackground
       source={backgroundImage}
       style={styles.backgroundImage}>
-      <Text style={[
-          styles.text,
-          styles.headerText
-        ]}>
-        The winner is...
-      </Text>
-      <Text
-        style={[
-          styles.text,
-          styles.choiceText
-        ]}>
-        {props.winningChoice.author}
-      </Text>
-      <Text
-        style={[
-          styles.text,
-          styles.headerText
-        ]}>So therefore, the choice is...</Text>
-      <Text
-        style={[
+      <View style={styles.choiceContainer}>
+        <Text style={[
+            styles.text,
+            styles.headerText
+          ]}>
+          The winner is...
+        </Text>
+        <Text
+          style={[
             styles.text,
             styles.choiceText
           ]}>
-          {props.winningChoice.choice}
-      </Text>
+          {props.winningChoice.author}
+        </Text>
+      </View>
+      <View style={styles.authorContainer}>
+        <Text
+          style={[
+            styles.text,
+            styles.headerText
+          ]}>So therefore, the choice is...</Text>
+        <Text
+          style={[
+              styles.text,
+              styles.choiceText
+            ]}>
+            {props.winningChoice.choice}
+        </Text>
+      </View>
     </ImageBackground>
   )
 }
@@ -42,15 +46,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  choiceContainer: {
+    padding: 10
+  },
+  authorContainer: {
+    padding: 10,
+    marginTop: 10
+  },
   text: {
-    fontSize: 50
+    fontSize: 40
   },
   headerText: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    textAlign: 'center'
   },
   choiceText: {
     backgroundColor: 'transparent',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textAlign: 'center'
   }
 })
 
