@@ -48,6 +48,16 @@ class ChoiceListScreen extends Component {
     })
   }
 
+  clickWinningChoiceHandler = () => {
+    this.props.navigator.push({
+      screen: 'tbd.ChoiceDetailScreen',
+      title: this.props.choices[0].choice,
+      passProps: {
+        winningChoice: this.props.choices[0]
+      }
+    })
+  }
+
   render() {
     return (
       <ImageBackground
@@ -87,6 +97,7 @@ class ChoiceListScreen extends Component {
                   choice={info.item.choice}
                   author={info.item.author}
                   randomized={this.state.randomized}
+                  onPress={this.clickWinningChoiceHandler}
                 />
               </Animated.View>
           )}
