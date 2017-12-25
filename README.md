@@ -1,6 +1,7 @@
-# react-native-TBD
 [![npm](https://img.shields.io/badge/license-MIT-yellow.svg)]()
 [![npm](https://img.shields.io/badge/devDependencies-up%20to%20date-brightgreen.svg)]()
+
+# react-native-TBD
 A mobile application for indecisive people who want to be given a decision.
 
 ## Compatible for Android and iOS
