@@ -3,7 +3,6 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-<<<<<<< HEAD
       "size" : "20x20",
       "scale" : "2x"
     },
@@ -15,9 +14,7 @@
     {
       "idiom" : "iphone",
       "size" : "29x29",
-=======
       "filename" : "Icon-App-20x20@2x.png",
->>>>>>> 998ff40f981d8c32b20afe9b508c4d1b3cb408eb
       "scale" : "2x"
     },
     {
@@ -63,14 +60,11 @@
       "scale" : "3x"
     },
     {
-<<<<<<< HEAD
       "idiom" : "ios-marketing",
       "size" : "1024x1024",
-=======
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
       "filename" : "web_hi_res_512.png",
->>>>>>> 998ff40f981d8c32b20afe9b508c4d1b3cb408eb
       "scale" : "1x"
     }
   ],
