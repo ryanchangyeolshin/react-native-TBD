@@ -33,22 +33,22 @@ const ButtonWithBackground = props => {
 
   if (Platform.OS === 'android') {
     return (
-      <TouchableNativeFeedback
-        style={[
+      <TouchableNativeFeedback onPress={props.onPress}>
+        <View style={[
           props.style,
           styles.button,
           { borderColor: props.color },
           props.disabled ? styles.disabled : null
-        ]}
-        onPress={props.onPress}>
-        <Text
-          style={[
-            { color: props.color },
-            props.disabled ? styles.disabledText : styles.buttonText
-          ]}
-        >
-          {props.children}
-        </Text>
+        ]}>
+          <Text
+            style={[
+              { color: props.color },
+              props.disabled ? styles.disabledText : styles.buttonText
+            ]}
+          >
+            {props.children}
+          </Text>
+        </View>
       </TouchableNativeFeedback>
     )
   }
